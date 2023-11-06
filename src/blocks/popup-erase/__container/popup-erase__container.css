@@ -1,0 +1,16 @@
+.popup-erase__container{
+  width: 80%;
+  background-color: white;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  }
+
+
+
+
