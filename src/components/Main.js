@@ -1,13 +1,41 @@
 import "../index.css";
 import PopupWithForm from "./PopupWithForm";
+import pencil from "../images/Vectoredit-pencil2.svg";
 
-function Main() {
-  
-
+function Main({onEditAvatarClick, onEditProfileClick, onAddPlaceClick}) {
   return (
     <div>
       <div className="page">
         <main className="container">
+          <div className="profile">
+            <div className="profile__avatar-container">
+              <img
+                src="https://scontent.fbrm1-1.fna.fbcdn.net/v/t39.30808-6/396509710_10159914931368932_4292595905199376147_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TVpIdsYxqn8AX8cq8Xu&_nc_ht=scontent.fbrm1-1.fna&oh=00_AfCcH25C4Hm6IfEZ48zRngj-SxNqWAGxyk5YooFswm2V1A&oe=65424080"
+                alt="Avatar del usuario"
+                className="profile__avatar"
+              />
+              <img
+                src={pencil}
+                alt="Pencil de editar"
+                className="profile__avatar-edit"
+                onClick={onEditAvatarClick}
+              />
+            </div>
+            <ul className="profile__place">
+              <li className="profile__name">Carlos Gomez</li>
+              <li className="profile__about">Web Developer</li>
+            </ul>
+            <button
+              type="button"
+              className="button-edit"
+              onClick={onEditProfileClick}
+            ></button>
+            <button
+              type="button"
+              className="button-place"
+              onClick={onAddPlaceClick}
+            ></button>
+          </div>
           <section className="cards"></section>
 
           <section id="popup" className="popup">
