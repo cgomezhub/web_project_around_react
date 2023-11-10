@@ -1,6 +1,8 @@
 import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
+import { api } from "../utils/api";
+import { useEffect, useState } from "react";
 
 function Main({
   onEditAvatarClick,
@@ -10,7 +12,24 @@ function Main({
   isEditAvatarPopupOpen,
   isEditProfilePopupOpen,
   isAddPlacePopupOpen,
+
 }) {
+  const [userName, setUserName] = useState(false);
+  const [userDescription, setUserDescription] = useState(false);
+  const [userAvatar, setUserAvatar] = useState(false);
+
+  useEffect(() => {
+    api.getUserData()
+      .then((userData) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
       <div className="page">
@@ -18,9 +37,10 @@ function Main({
           <div className="profile">
             <div className="profile__avatar-container">
               <img
-                src="https://scontent.fbrm1-1.fna.fbcdn.net/v/t39.30808-6/396509710_10159914931368932_4292595905199376147_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TVpIdsYxqn8AX8cq8Xu&_nc_ht=scontent.fbrm1-1.fna&oh=00_AfCcH25C4Hm6IfEZ48zRngj-SxNqWAGxyk5YooFswm2V1A&oe=65424080"
+                src={userAvatar.toString()}
                 alt="Avatar del usuario"
                 className="profile__avatar"
+                
               />
               <img
                 src={pencil}
@@ -30,8 +50,8 @@ function Main({
               />
             </div>
             <ul className="profile__place">
-              <li className="profile__name">Carlos Gomez</li>
-              <li className="profile__about">Web Developer</li>
+              <li className="profile__name">{userName}</li>
+              <li className="profile__about">{userDescription}</li>
             </ul>
             <button
               type="button"
@@ -51,7 +71,7 @@ function Main({
             name="avatar-form"
             isOpen={isEditAvatarPopupOpen}
             onClose={onClose}
-            className={isEditAvatarPopupOpen ? "active" : "popup_is-opened"}     
+            className={isEditAvatarPopupOpen ? "active" : "popup_is-opened"}
           >
             <button
               type="button"
@@ -199,5 +219,4 @@ function Main({
     </div>
   );
 }
-
 export default Main;
