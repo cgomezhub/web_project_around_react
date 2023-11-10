@@ -1,48 +1,41 @@
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
+import React, { useState } from "react";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
   const handleEditAvatarClick = () => {
-    document.querySelector('.popup_type_avatar-form').classList.add('active');
-    document.querySelector('#avatar-form').classList.add('active');
+    setIsEditAvatarPopupOpen(true);
   };
 
   const handleEditProfileClick = () => {
-    document.querySelector('.popup_type_profile-form ').classList.add('active');
-    document.querySelector('#profile-form').classList.add('active');
-
+    setIsEditProfilePopupOpen(true);
   };
 
   const handleAddPlaceClick = () => {
-    document.querySelector('.popup_type_add-form ').classList.add('active');
-    document.querySelector('#add-form').classList.add('active');
+    setIsAddPlacePopupOpen(true);
   };
 
   const closeAllPopups = () => {
-    document.querySelector(".popup").classList.remove("active");
-    document.querySelector(".form").classList.remove("active");
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
   };
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeAllPopups();
-    }
-  });
-  document.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains("popup")) {
-      closeAllPopups();
-    }
-  });
-
-
   return (
     <div>
       <Header />
-      <Main 
-      onEditProfileClick = {handleEditProfileClick}
-      onAddPlaceClick = {handleAddPlaceClick}
-      onEditAvatarClick = {handleEditAvatarClick}
-      onClose = {closeAllPopups}
+      <Main
+        onEditProfileClick={handleEditProfileClick}
+        onAddPlaceClick={handleAddPlaceClick}
+        onEditAvatarClick={handleEditAvatarClick}
+        onClose={closeAllPopups}
+        isEditProfilePopupOpen={isEditProfilePopupOpen}
+        isAddPlacePopupOpen={isAddPlacePopupOpen}
+        isEditAvatarPopupOpen={isEditAvatarPopupOpen}
       />
       <Footer />
     </div>

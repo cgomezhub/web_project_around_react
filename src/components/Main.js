@@ -2,7 +2,15 @@ import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
 
-function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onClose }) {
+function Main({
+  onEditAvatarClick,
+  onEditProfileClick,
+  onAddPlaceClick,
+  onClose,
+  isEditAvatarPopupOpen,
+  isEditProfilePopupOpen,
+  isAddPlacePopupOpen,
+}) {
   return (
     <div>
       <div className="page">
@@ -38,7 +46,11 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onClose 
           </div>
           <section className="cards"></section>
 
-          <PopupWithForm title="Cambiar Foto de Perfil" name="avatar-form">
+          <PopupWithForm
+            title="Cambiar Foto de Perfil"
+            name="avatar-form"
+            isOpen={isEditAvatarPopupOpen}           
+          >
             <button
               type="button"
               className="form__close"
@@ -65,8 +77,12 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onClose 
               </button>
             </div>
           </PopupWithForm>
-          <PopupWithForm title="Editar perfil" name="profile-form">
-          <button
+          <PopupWithForm
+            title="Editar perfil"
+            name="profile-form"
+            isOpen={isEditProfilePopupOpen}
+          >
+            <button
               type="button"
               className="form__close"
               onClick={onClose}
@@ -104,8 +120,12 @@ function Main({ onEditAvatarClick, onEditProfileClick, onAddPlaceClick, onClose 
               </button>
             </div>
           </PopupWithForm>
-          <PopupWithForm title="Nuevo Lugar" name="add-form">
-          <button
+          <PopupWithForm
+            title="Nuevo Lugar"
+            name="add-form"
+            isOpen={isAddPlacePopupOpen}
+          >
+            <button
               type="button"
               className="form__close"
               onClick={onClose}

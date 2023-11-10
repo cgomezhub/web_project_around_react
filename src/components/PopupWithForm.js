@@ -2,11 +2,11 @@ import "../index.css";
 
 
 
-function PopupWithForm({ title, name, children }) {
+function PopupWithForm({ title, name, children, isOpen, onClose}) {
   
 
   return (
-    <section className={`popup popup_type_${name}`} >
+    <section className={`popup ${isOpen ? 'popup_is-opened' : ''}`} onClick={onClose}>
       <form id={name} className="form" noValidate>
         <h2 className="form__title">{title}</h2>
         {children}

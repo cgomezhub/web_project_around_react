@@ -19,58 +19,16 @@
   transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
 }
 
-.popup_type_avatar-form {
-  visibility: hidden;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
-}
 
-.popup_type_avatar-form.active {
+
+.popup_is-opened{
   visibility: visible;
   opacity: 1;
   transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
-}
-
-
-.popup_type_profile-form{
-  visibility: hidden;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
-}
-
-.popup_type_profile-form.active{
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
-}
-
-.popup_type_add-form{
-  visibility: hidden;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
-}
-
-.popup_type_add-form.active{
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
+  
 }
 
 
 
 
 
-
-/*
-.popup_type_profile-form {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
-}
-
-
-.popup-avatar.hide{
-  opacity: 0;
-  visibility: hidden;
-
-}*/
