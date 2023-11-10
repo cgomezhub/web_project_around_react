@@ -49,7 +49,9 @@ function Main({
           <PopupWithForm
             title="Cambiar Foto de Perfil"
             name="avatar-form"
-            isOpen={isEditAvatarPopupOpen}           
+            isOpen={isEditAvatarPopupOpen}
+            onClose={onClose}
+            className={isEditAvatarPopupOpen ? "active" : "popup_is-opened"}     
           >
             <button
               type="button"
@@ -81,6 +83,8 @@ function Main({
             title="Editar perfil"
             name="profile-form"
             isOpen={isEditProfilePopupOpen}
+            onClose={onClose}
+            className={isEditProfilePopupOpen ? "active" : "popup_is-opened"}
           >
             <button
               type="button"
@@ -124,6 +128,8 @@ function Main({
             title="Nuevo Lugar"
             name="add-form"
             isOpen={isAddPlacePopupOpen}
+            onClose={onClose}
+            className={isAddPlacePopupOpen ? "active" : "popup_is-opened"}
           >
             <button
               type="button"
