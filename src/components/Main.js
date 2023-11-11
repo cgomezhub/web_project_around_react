@@ -1,8 +1,8 @@
 import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
-import { api } from "../utils/api";
 import { useEffect, useState } from "react";
+import api from "../utils/Api";
 
 function Main({
   onEditAvatarClick,
@@ -12,18 +12,30 @@ function Main({
   isEditAvatarPopupOpen,
   isEditProfilePopupOpen,
   isAddPlacePopupOpen,
-
 }) {
-  const [userName, setUserName] = useState(false);
-  const [userDescription, setUserDescription] = useState(false);
-  const [userAvatar, setUserAvatar] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api.getUserData()
+    api
+      .getUserData()
       .then((userData) => {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  
+    api
+      .getCardData()
+      .then((cardsData) => {
+        
+        setCards(cardsData);
+        console.log(cardsData);
       })
       .catch((error) => {
         console.log(error);
@@ -37,10 +49,9 @@ function Main({
           <div className="profile">
             <div className="profile__avatar-container">
               <img
-                src={userAvatar.toString()}
+                src={userAvatar}
                 alt="Avatar del usuario"
                 className="profile__avatar"
-                
               />
               <img
                 src={pencil}
@@ -64,7 +75,22 @@ function Main({
               onClick={onAddPlaceClick}
             ></button>
           </div>
-          <section className="cards"></section>
+          <section className="cards">
+            {cards && cards.map((card) => (
+              <div className="card">
+                <img
+                  className="card__link"
+                  src={card.link}
+                  alt={`imagen de ${card.name}`}
+                  //style={{ backgroundImage: `url(${card.link})` }}
+                />
+                <button class="card__trash"></button>
+                <p className="card__name">{card.name}</p>
+                <button className="card__heart"></button>
+                <p className="card__like-count">{card.likes.length}</p>
+              </div>
+            ))}
+          </section>
 
           <PopupWithForm
             title="Cambiar Foto de Perfil"
