@@ -3,6 +3,7 @@ import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
 import { useEffect, useState } from "react";
 import api from "../utils/Api";
+import Card from "./Card";
 
 function Main({
   onEditAvatarClick,
@@ -12,6 +13,7 @@ function Main({
   isEditAvatarPopupOpen,
   isEditProfilePopupOpen,
   isAddPlacePopupOpen,
+  card
 }) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
@@ -29,13 +31,12 @@ function Main({
       .catch((error) => {
         console.log(error);
       });
-  
+
     api
       .getCardData()
       .then((cardsData) => {
-        
         setCards(cardsData);
-        console.log(cardsData);
+        //console.log(cardsData);
       })
       .catch((error) => {
         console.log(error);
@@ -75,23 +76,7 @@ function Main({
               onClick={onAddPlaceClick}
             ></button>
           </div>
-          <section className="cards">
-            {cards && cards.map((card) => (
-              <div className="card">
-                <img
-                  className="card__link"
-                  src={card.link}
-                  alt={`imagen de ${card.name}`}
-                  //style={{ backgroundImage: `url(${card.link})` }}
-                />
-                <button class="card__trash"></button>
-                <p className="card__name">{card.name}</p>
-                <button className="card__heart"></button>
-                <p className="card__like-count">{card.likes.length}</p>
-              </div>
-            ))}
-          </section>
-
+          <Card cards={cards}/>
           <PopupWithForm
             title="Cambiar Foto de Perfil"
             name="avatar-form"
