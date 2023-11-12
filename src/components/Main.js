@@ -15,7 +15,7 @@ function Main({
   isEditProfilePopupOpen,
   isAddPlacePopupOpen,
   selectedCard,
-  onSelectedCard
+  onSelectedCard,
 }) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
@@ -78,8 +78,14 @@ function Main({
               onClick={onAddPlaceClick}
             ></button>
           </div>
-          <Card cards={cards} selectedCard={selectedCard} onSelectedCard={onSelectedCard}/>
-          {selectedCard && <ImagePopup selectedCard={selectedCard} onClose= {onClose}/>}
+          <Card
+            cards={cards}
+            selectedCard={selectedCard}
+            onSelectedCard={onSelectedCard}
+          />
+          {selectedCard && (
+            <ImagePopup selectedCard={selectedCard} onClose={onClose} />
+          )}
           <PopupWithForm
             title="Cambiar Foto de Perfil"
             name="avatar-form"
@@ -218,8 +224,6 @@ function Main({
                 Sí
               </button>
             </form> */}
-
-         
         </main>
       </div>
     </div>

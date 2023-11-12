@@ -1,15 +1,12 @@
 import "../index.css";
-import React from "react";
+
 
 function ImagePopup({ selectedCard, onClose }) {
-  console.log(selectedCard);
+ /* console.log(selectedCard);
   console.log(selectedCard.link);
-  console.log(onclose);
-
-  
-
+  console.log(onclose);*/
   return (
-    <div className={`image-popup ${selectedCard ? "image-popup_visible" : ""}`}>
+    <section className={`image-popup ${selectedCard ? "image-popup_visible" : ""}`} onClick={onClose}>
       <button
         type="button"
         className="image-popup__close"
@@ -21,7 +18,7 @@ function ImagePopup({ selectedCard, onClose }) {
         className="image-popup__photo"
       />
       <p className="image-popup__name">{selectedCard.name}</p>
-    </div>
+    </section>
   );
 }
 

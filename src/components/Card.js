@@ -4,7 +4,7 @@ import React from "react";
 //import ImagePopup from "./ImagePopup";
 
 function Card({ cards, selectedCard, onSelectedCard }) {
-  console.log(selectedCard);
+  //console.log(selectedCard);
   return (
     <section className="cards">
       {cards.map((card) => (
