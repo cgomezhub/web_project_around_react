@@ -2,7 +2,7 @@ import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
 import { useEffect, useState } from "react";
-import api from "../utils/Api";
+import {api}  from "../utils/Api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
 
