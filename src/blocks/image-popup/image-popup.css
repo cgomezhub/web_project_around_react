@@ -1,0 +1,29 @@
+.image-popup{
+    width: 75vw;
+    height: 75vh;
+    position: absolute;
+    top: 0%;
+    background-color: rgb(0, 0, 0, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+    z-index: 1;
+    margin-right: 0;
+
+    margin-top: -20%;
+    padding-top:10%;
+
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px){
+    .image-popup{
+        margin: 50% auto;
+    }
+}
+
+.image-popup_visible{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
+
+}

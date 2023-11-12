@@ -1,6 +1,10 @@
 import "../index.css";
 
-function Card({ cards }) {
+import React from "react";
+//import ImagePopup from "./ImagePopup";
+
+function Card({ cards, selectedCard, onSelectedCard }) {
+  console.log(selectedCard);
   return (
     <section className="cards">
       {cards.map((card) => (
@@ -9,6 +13,7 @@ function Card({ cards }) {
             className="card__link"
             src={card.link}
             alt={`imagen de ${card.name}`}
+            onClick={() => onSelectedCard(card)}
           />
           <button className="card__trash"></button>
           <p className="card__name">{card.name}</p>
@@ -16,6 +21,7 @@ function Card({ cards }) {
           <p className="card__like-count">{card.likes.length}</p>
         </div>
       ))}
+      {/*{selectedCard && <ImagePopup selectedCard={selectedCard} />}}*/}
     </section>
   );
 }

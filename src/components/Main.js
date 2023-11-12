@@ -4,6 +4,7 @@ import pencil from "../images/Vectoredit-pencil2.svg";
 import { useEffect, useState } from "react";
 import api from "../utils/Api";
 import Card from "./Card";
+import ImagePopup from "./ImagePopup";
 
 function Main({
   onEditAvatarClick,
@@ -13,7 +14,8 @@ function Main({
   isEditAvatarPopupOpen,
   isEditProfilePopupOpen,
   isAddPlacePopupOpen,
-  card
+  selectedCard,
+  onSelectedCard
 }) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
@@ -76,7 +78,8 @@ function Main({
               onClick={onAddPlaceClick}
             ></button>
           </div>
-          <Card cards={cards}/>
+          <Card cards={cards} selectedCard={selectedCard} onSelectedCard={onSelectedCard}/>
+          {selectedCard && <ImagePopup selectedCard={selectedCard} onClose= {onClose}/>}
           <PopupWithForm
             title="Cambiar Foto de Perfil"
             name="avatar-form"
@@ -216,15 +219,7 @@ function Main({
               </button>
             </form> */}
 
-          <div className="image-container">
-            <button type="button" className="form__close"></button>
-            <img
-              alt="imagen del gran canon"
-              src="https://images.unsplash.com/photo-1643252494989-81cd0b5bead2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-              className="image-container__photo"
-            />
-            <p className="image-container__name"></p>
-          </div>
+         
         </main>
       </div>
     </div>

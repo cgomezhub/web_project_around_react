@@ -40,9 +40,10 @@
 @import url(../src/blocks/card/__like-count/card__like-count.css);
 @import url(../src/blocks/footer/footer.css);
 @import url(../src/blocks/footer/__copyright/footer__copyright.css);
-@import url(../src/blocks/image-container/image-container.css);
-@import url(../src/blocks/image-container/__photo/image-container__photo.css);
-@import url(../src/blocks/image-container/__name/image-container__name.css);
+@import url(../src/blocks/image-popup/image-popup.css);
+@import url(../src/blocks/image-popup/__close/image-popup__close.css);
+@import url(../src/blocks/image-popup/__photo/image-popup__photo.css);
+@import url(../src/blocks/image-popup/__name/image-popup__name.css);
 
 
 
