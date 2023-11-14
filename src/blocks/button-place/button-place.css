@@ -6,9 +6,9 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
-    border:none;
+    border: 2px solid white;
     margin: auto 0 auto auto;
-    outline: none;
+    outline: none; 
     cursor: pointer;
     
 }

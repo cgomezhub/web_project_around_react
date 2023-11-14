@@ -1,12 +1,11 @@
 import "../index.css";
 
-
 function ImagePopup({ selectedCard, onClose }) {
- /* console.log(selectedCard);
-  console.log(selectedCard.link);
-  console.log(onclose);*/
   return (
-    <section className={`image-popup ${selectedCard ? "image-popup_visible" : ""}`} onClick={onClose}>
+    <section
+      className={`image-popup ${selectedCard ? "image-popup_visible" : ""}`}
+      onClick={onClose}
+    >
       <button
         type="button"
         className="image-popup__close"

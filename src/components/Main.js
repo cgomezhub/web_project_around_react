@@ -2,12 +2,10 @@ import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
 import { useEffect, useState } from "react";
-import  api  from "../utils/api";
+import api from "../utils/api";
 import Card from "./Card";
 
 import ImagePopup from "./ImagePopup";
-
-
 
 function Main({
   onEditAvatarClick,
@@ -41,7 +39,6 @@ function Main({
       .getCardData()
       .then((cardsData) => {
         setCards(cardsData);
-        //console.log(cardsData);
       })
       .catch((error) => {
         console.log(error);
@@ -215,18 +212,6 @@ function Main({
               Sí
             </button>
           </PopupWithForm>
-          {/*
-            <form id="sure-form" className="form">
-              <h2 className="form__title">¿Estás seguro/a?</h2>
-              <button
-                id="sure-form-close"
-                type="button"
-                className="form__close"
-              ></button>
-              <button type="button" className="form__button">
-                Sí
-              </button>
-            </form> */}
         </main>
       </div>
     </div>
