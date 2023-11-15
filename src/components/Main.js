@@ -11,10 +11,12 @@ function Main({
   onEditAvatarClick,
   onEditProfileClick,
   onAddPlaceClick,
+  onEraseCardClick,
   onClose,
   isEditAvatarPopupOpen,
   isEditProfilePopupOpen,
   isAddPlacePopupOpen,
+  isEraseCardPopupOpen,
   selectedCard,
   onSelectedCard,
 }) {
@@ -82,6 +84,7 @@ function Main({
             cards={cards}
             selectedCard={selectedCard}
             onSelectedCard={onSelectedCard}
+            onEraseCardClick={onEraseCardClick}
           />
           {selectedCard && (
             <ImagePopup selectedCard={selectedCard} onClose={onClose} />
@@ -93,11 +96,6 @@ function Main({
             onClose={onClose}
             className={isEditAvatarPopupOpen ? "active" : "popup_is-opened"}
           >
-            <button
-              type="button"
-              className="form__close"
-              onClick={onClose}
-            ></button>
             <input
               type="url"
               id="url-input-avatar"
@@ -126,11 +124,6 @@ function Main({
             onClose={onClose}
             className={isEditProfilePopupOpen ? "active" : "popup_is-opened"}
           >
-            <button
-              type="button"
-              className="form__close"
-              onClick={onClose}
-            ></button>
             <input
               id="text-input-name"
               className="form__input"
@@ -171,11 +164,6 @@ function Main({
             onClose={onClose}
             className={isAddPlacePopupOpen ? "active" : "popup_is-opened"}
           >
-            <button
-              type="button"
-              className="form__close"
-              onClick={onClose}
-            ></button>
             <input
               id="text-input-place"
               type="text"
@@ -207,7 +195,13 @@ function Main({
               </button>
             </div>
           </PopupWithForm>
-          <PopupWithForm title="¿Estás seguro/a?" name="sure-form">
+          <PopupWithForm
+            title="¿Estás seguro/a?"
+            name="sure-form"
+            isOpen={isEraseCardPopupOpen}
+            onClose={onClose}
+            className={isEraseCardPopupOpen ? "active" : "popup_is-opened"}
+          >
             <button type="button" className="form__button">
               Sí
             </button>

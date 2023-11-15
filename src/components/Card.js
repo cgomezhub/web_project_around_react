@@ -3,7 +3,7 @@ import "../index.css";
 import React from "react";
 //import ImagePopup from "./ImagePopup";
 
-function Card({ cards, selectedCard, onSelectedCard }) {
+function Card({ cards, onSelectedCard, onEraseCardClick }) {
   //console.log(selectedCard);
   return (
     <section className="cards">
@@ -15,7 +15,7 @@ function Card({ cards, selectedCard, onSelectedCard }) {
             alt={`imagen de ${card.name}`}
             onClick={() => onSelectedCard(card)}
           />
-          <button className="card__trash"></button>
+          <button className="card__trash" onClick={onEraseCardClick}></button>
           <p className="card__name">{card.name}</p>
           <button className="card__heart"></button>
           <p className="card__like-count">{card.likes.length}</p>
