@@ -14,7 +14,8 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
           className="form__close"
           onClick={onClose}
         ></button>
-        <h2 className="form__title">{title}</h2>F{children}
+        <h2 className="form__title">{title}</h2>
+        {children}
       </form>
     </section>
   );
