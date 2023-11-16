@@ -31,7 +31,7 @@
     height: 30%;
     border-top-width: 1px;
     border-bottom-width: 1px;
-    grid-row: 2 / 3; 
+    grid-row: 2 / 3;
     grid-column: 3 / 4;
   }
 }
