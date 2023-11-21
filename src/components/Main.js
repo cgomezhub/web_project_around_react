@@ -1,13 +1,12 @@
 import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
-import React,{ useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
 
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
-
 
 function Main({
   onEditAvatarClick,
@@ -22,7 +21,6 @@ function Main({
   selectedCard,
   onSelectedCard,
 }) {
-  
   const currentUser = useContext(CurrentUserContext);
   console.log(currentUser);
 
@@ -38,6 +36,27 @@ function Main({
         console.log(error);
       });
   }, []);
+
+  function handleCardLike(card) {
+    console.log(card);
+    // Verifica una vez más si a esta tarjeta ya le han dado like
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    // Envía una petición a la API y obtén los datos actualizados de la tarjeta
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      console.log(card._id);
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
+  function handleCardDelete(card) {
+    console.log(card);
+    // Envía una petición a la API y excluye la tarjeta seleccionada
+    api.deleteCard(card._id).then(() => {
+      
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
 
   return (
     <div>
@@ -77,6 +96,8 @@ function Main({
             selectedCard={selectedCard}
             onSelectedCard={onSelectedCard}
             onEraseCardClick={onEraseCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
           />
           {selectedCard && (
             <ImagePopup selectedCard={selectedCard} onClose={onClose} />
@@ -194,7 +215,11 @@ function Main({
             onClose={onClose}
             className={isEraseCardPopupOpen ? "active" : "popup_is-opened"}
           >
-            <button type="button" className="form__button">
+            <button
+              type="button"
+              className="form__button"
+              onClick={handleCardDelete}
+            >
               Sí
             </button>
           </PopupWithForm>
