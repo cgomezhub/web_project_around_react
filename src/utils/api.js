@@ -3,7 +3,7 @@ class Api {
     this.address = options.address;
     this.headers = options.headers;
   }
-  getUserData() {
+  getUserInfo() {
     return fetch(`${this.address}/users/me`, {
       headers: this.headers,
     })
@@ -17,7 +17,7 @@ class Api {
         console.log(err);
       });
   }
-  getCardData() {
+  getCardInfo() {
     return fetch(`${this.address}/cards`, {
       headers: this.headers,
     })

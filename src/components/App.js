@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import api from "../utils/api";
+import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -9,6 +11,20 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEraseCardPopupOpen, setIsEraseCardPopupOpen] = useState(false);
   const [selectedCard, setSeletedCard] = useState(null);
+
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    api
+      .getUserInfo()
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });    
+  }, []);
+
 
   const handleCardClick = (card) => {
     setSeletedCard(card);
@@ -37,6 +53,7 @@ function App() {
     setSeletedCard(null);
   };
   return (
+    <CurrentUserContext.Provider value ={currentUser} >
     <div>
       <Header />
       <Main
@@ -54,6 +71,7 @@ function App() {
       />
       <Footer />
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 

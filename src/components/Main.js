@@ -1,11 +1,13 @@
 import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState, useContext } from "react";
 import api from "../utils/api";
 import Card from "./Card";
-
 import ImagePopup from "./ImagePopup";
+
+import { CurrentUserContext } from "../contexts/CurrentUserContexts";
+
 
 function Main({
   onEditAvatarClick,
@@ -20,25 +22,15 @@ function Main({
   selectedCard,
   onSelectedCard,
 }) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  
+  const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
+
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api
-      .getUserData()
-      .then((userData) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    api
-      .getCardData()
+      .getCardInfo()
       .then((cardsData) => {
         setCards(cardsData);
       })
@@ -54,7 +46,7 @@ function Main({
           <div className="profile">
             <div className="profile__avatar-container">
               <img
-                src={userAvatar}
+                src={currentUser.avatar}
                 alt="Avatar del usuario"
                 className="profile__avatar"
               />
@@ -66,8 +58,8 @@ function Main({
               />
             </div>
             <ul className="profile__place">
-              <li className="profile__name">{userName}</li>
-              <li className="profile__about">{userDescription}</li>
+              <li className="profile__name">{currentUser.name}</li>
+              <li className="profile__about">{currentUser.about}</li>
             </ul>
             <button
               type="button"
