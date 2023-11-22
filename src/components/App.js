@@ -4,6 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -70,6 +71,7 @@ function App() {
         onSelectedCard={handleCardClick}
       />
       <Footer />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
     </div>
     </CurrentUserContext.Provider>
   );

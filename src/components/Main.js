@@ -5,6 +5,7 @@ import React, { useEffect, useState, useContext } from "react";
 import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
+import EditProfilePopup from './EditProfilePopup';
 
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 
@@ -130,46 +131,7 @@ function Main({
               </button>
             </div>
           </PopupWithForm>
-          <PopupWithForm
-            title="Editar perfil"
-            name="profile-form"
-            isOpen={isEditProfilePopupOpen}
-            onClose={onClose}
-            className={isEditProfilePopupOpen ? "active" : "popup_is-opened"}
-          >
-            <input
-              id="text-input-name"
-              className="form__input"
-              type="text"
-              placeholder="Nombre"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="text-input-name-error form__error"></span>
-            <input
-              id="text-input-about"
-              type="text"
-              className="form__input"
-              placeholder="Acerca de mi"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="text-input-about-error form__error"></span>
-            <div className="form__button-container">
-              <button
-                id="button-user-save"
-                type="submit"
-                className="form__button"
-              >
-                Guardar
-              </button>
-              <button id="button-user-saving" className="form__button-saving">
-                Guardando...
-              </button>
-            </div>
-          </PopupWithForm>
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={onClose} />
           <PopupWithForm
             title="Nuevo Lugar"
             name="add-form"
