@@ -4,7 +4,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
   return (
     <section
       className={`popup ${isOpen ? "popup_is-opened" : ""}`}
-      onClick={onClose}
+      //onClick={onClose}
       onKeyDown={onClose}
       tabIndex={0}
     >
