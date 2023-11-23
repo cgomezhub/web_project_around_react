@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -13,7 +14,7 @@ function App() {
   const [isEraseCardPopupOpen, setIsEraseCardPopupOpen] = useState(false);
   const [selectedCard, setSeletedCard] = useState(null);
 
-  const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
+  const [currentUser, setCurrentUser] = useState({ name: "", about: "", avatar:"" });
 
   useEffect(() => {
     api
@@ -25,6 +26,19 @@ function App() {
         console.log(error);
       });
   }, []);
+
+  const handleUpdateAvatar = (userData) => {
+    api
+      .setUserAvatar(userData)
+      .then((updateAvatarData) => {
+        setCurrentUser(updateAvatarData);
+        console.log(updateAvatarData);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleUpdateUser = (userData) => {
     api
@@ -74,9 +88,7 @@ function App() {
           onEditAvatarClick={handleEditAvatarClick}
           onEraseCardClick={handleEraseCardClick}
           onClose={closeAllPopups}
-          isEditProfilePopupOpen={isEditProfilePopupOpen}
           isAddPlacePopupOpen={isAddPlacePopupOpen}
-          isEditAvatarPopupOpen={isEditAvatarPopupOpen}
           isEraseCardPopupOpen={isEraseCardPopupOpen}
           selectedCard={selectedCard}
           onSelectedCard={handleCardClick}
@@ -87,6 +99,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+  />
       </div>
     </CurrentUserContext.Provider>
   );

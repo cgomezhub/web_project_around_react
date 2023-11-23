@@ -15,7 +15,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   }
 
   // suscribir el contexto 
-  
+
   const currentUser = useContext(CurrentUserContext);
   //console.log(currentUser);
   // Después de cargar el usuario actual desde la API
@@ -26,9 +26,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   }, [currentUser]);
 
   function handleSubmit(e) {
-    // Evita que el navegador navegue hacia la dirección del formulario
     e.preventDefault();
-
     // Pasa los valores de los componentes gestionados al controlador externo
     onUpdateUser({
       name,
@@ -39,7 +37,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   return (
     <PopupWithForm
       title="Editar perfil"
-      name="profile-form"
+      name="edit"
       isOpen={isOpen}
       onClose={onClose}
       className={isOpen ? "active" : "popup_is-opened"}

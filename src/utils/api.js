@@ -79,6 +79,24 @@ class Api {
         console.log(err);
       });
   }
+  // Actualizar la foto de perfil
+
+  setUserAvatar(updatedAvatar) {
+    return fetch(`${this.address}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify(updatedAvatar),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject('Error: ' + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 const api = new Api({

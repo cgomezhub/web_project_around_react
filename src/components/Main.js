@@ -14,7 +14,7 @@ function Main({
   onAddPlaceClick,
   onEraseCardClick,
   onClose,
-  isEditAvatarPopupOpen,
+  //isEditAvatarPopupOpen,
   isAddPlacePopupOpen,
   isEraseCardPopupOpen,
   selectedCard,
@@ -100,36 +100,7 @@ function Main({
           />
           {selectedCard && (
             <ImagePopup selectedCard={selectedCard} onClose={onClose} />
-          )}
-          <PopupWithForm
-            title="Cambiar Foto de Perfil"
-            name="avatar-form"
-            isOpen={isEditAvatarPopupOpen}
-            onClose={onClose}
-            className={isEditAvatarPopupOpen ? "active" : "popup_is-opened"}
-          >
-            <input
-              type="url"
-              id="url-input-avatar"
-              className="form__input"
-              placeholder="Introduce URL (https://... o http://...)"
-              required
-            />
-            <span className="url-input-avatar-error form__error"></span>
-            <div className="form__button-container">
-              <button
-                id="button-avatar-save"
-                type="submit"
-                className="form__button"
-              >
-                Guardar
-              </button>
-              <button id="button-avatar-saving" className="form__button-saving">
-                Guardando...
-              </button>
-            </div>
-          </PopupWithForm>
-          
+          )}    
           <PopupWithForm
             title="Nuevo Lugar"
             name="add-form"
