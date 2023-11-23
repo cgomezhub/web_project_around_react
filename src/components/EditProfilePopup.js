@@ -3,6 +3,7 @@ import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+  
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
@@ -13,6 +14,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setDescription(e.target.value);
   }
 
+  // suscribir el contexto 
+  
   const currentUser = useContext(CurrentUserContext);
   //console.log(currentUser);
   // Después de cargar el usuario actual desde la API

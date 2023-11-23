@@ -4,8 +4,6 @@ function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
   return (
     <section
       className={`popup ${isOpen ? "popup_is-opened" : ""}`}
-      onKeyDown={onClose}
-      tabIndex={0}
     >
       <form id={name} className="form" noValidate onSubmit={onSubmit}>
         <button

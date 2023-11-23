@@ -5,7 +5,6 @@ import React, { useEffect, useState, useContext } from "react";
 import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
-import EditProfilePopup from './EditProfilePopup';
 
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 
@@ -16,7 +15,6 @@ function Main({
   onEraseCardClick,
   onClose,
   isEditAvatarPopupOpen,
-  isEditProfilePopupOpen,
   isAddPlacePopupOpen,
   isEraseCardPopupOpen,
   selectedCard,
@@ -131,7 +129,7 @@ function Main({
               </button>
             </div>
           </PopupWithForm>
-          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={onClose} />
+          
           <PopupWithForm
             title="Nuevo Lugar"
             name="add-form"
