@@ -13,7 +13,7 @@ function App() {
   const [isEraseCardPopupOpen, setIsEraseCardPopupOpen] = useState(false);
   const [selectedCard, setSeletedCard] = useState(null);
 
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
 
   useEffect(() => {
     api
@@ -23,9 +23,20 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      });    
+      });
   }, []);
 
+  const handleUpdateUser = (userData) => {
+    api
+      .setUserInfo(userData)
+      .then((updateUserData) => {
+        setCurrentUser(updateUserData);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleCardClick = (card) => {
     setSeletedCard(card);
@@ -54,25 +65,29 @@ function App() {
     setSeletedCard(null);
   };
   return (
-    <CurrentUserContext.Provider value ={currentUser} >
-    <div>
-      <Header />
-      <Main
-        onEditProfileClick={handleEditProfileClick}
-        onAddPlaceClick={handleAddPlaceClick}
-        onEditAvatarClick={handleEditAvatarClick}
-        onEraseCardClick={handleEraseCardClick}
-        onClose={closeAllPopups}
-        isEditProfilePopupOpen={isEditProfilePopupOpen}
-        isAddPlacePopupOpen={isAddPlacePopupOpen}
-        isEditAvatarPopupOpen={isEditAvatarPopupOpen}
-        isEraseCardPopupOpen={isEraseCardPopupOpen}
-        selectedCard={selectedCard}
-        onSelectedCard={handleCardClick}
-      />
-      <Footer />
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div>
+        <Header />
+        <Main
+          onEditProfileClick={handleEditProfileClick}
+          onAddPlaceClick={handleAddPlaceClick}
+          onEditAvatarClick={handleEditAvatarClick}
+          onEraseCardClick={handleEraseCardClick}
+          onClose={closeAllPopups}
+          isEditProfilePopupOpen={isEditProfilePopupOpen}
+          isAddPlacePopupOpen={isAddPlacePopupOpen}
+          isEditAvatarPopupOpen={isEditAvatarPopupOpen}
+          isEraseCardPopupOpen={isEraseCardPopupOpen}
+          selectedCard={selectedCard}
+          onSelectedCard={handleCardClick}
+        />
+        <Footer />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+        />
+      </div>
     </CurrentUserContext.Provider>
   );
 }

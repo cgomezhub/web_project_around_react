@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 
 function Card({ cards, onSelectedCard, onEraseCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
+ 
 
   return (
     <section className="cards">

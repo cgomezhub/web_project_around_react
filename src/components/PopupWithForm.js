@@ -1,14 +1,13 @@
 import "../index.css";
 
-function PopupWithForm({ title, name, children, isOpen, onClose }) {
+function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
   return (
     <section
       className={`popup ${isOpen ? "popup_is-opened" : ""}`}
-      //onClick={onClose}
       onKeyDown={onClose}
       tabIndex={0}
     >
-      <form id={name} className="form" noValidate>
+      <form id={name} className="form" noValidate onSubmit={onSubmit}>
         <button
           type="button"
           className="form__close"

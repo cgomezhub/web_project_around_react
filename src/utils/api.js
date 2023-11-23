@@ -32,7 +32,7 @@ class Api {
       });
   }
   changeLikeCardStatus(cardId, like) {
-    const method = like ? 'PUT' : 'DELETE';
+    const method = like ? "PUT" : "DELETE";
     return fetch(`${this.address}/cards/likes/${cardId}`, {
       method: method,
       headers: this.headers,
@@ -41,7 +41,7 @@ class Api {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject('Error: ' + res.status);
+        return Promise.reject("Error: " + res.status);
       })
       .catch((err) => {
         console.log(err);
@@ -50,21 +50,35 @@ class Api {
 
   deleteCard(cardId) {
     return fetch(`${this.address}/cards/${cardId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: this.headers,
     })
       .then((res) => {
         if (res.ok) {
           return res.json();
         }
-        return Promise.reject('Error: ' + res.status);
+        return Promise.reject("Error: " + res.status);
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
-
+  setUserInfo(updatedData) {
+    return fetch(`${this.address}/users/me`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify(updatedData),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject("Error: " + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 const api = new Api({

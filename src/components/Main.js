@@ -23,7 +23,7 @@ function Main({
   onSelectedCard,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
+  
 
   const [cards, setCards] = useState([]);
 
@@ -39,19 +39,19 @@ function Main({
   }, []);
 
   function handleCardLike(card) {
-    console.log(card);
+    
     // Verifica una vez más si a esta tarjeta ya le han dado like
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Envía una petición a la API y obtén los datos actualizados de la tarjeta
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      console.log(card._id);
+     
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
     });
   }
 
   function handleCardDelete(card) {
-    console.log(card);
+    
     // Envía una petición a la API y excluye la tarjeta seleccionada
     api.deleteCard(card._id).then(() => {
       
