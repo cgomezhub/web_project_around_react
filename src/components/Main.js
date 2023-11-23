@@ -1,8 +1,8 @@
 import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
-import React, { useEffect, useState, useContext } from "react";
-import api from "../utils/api";
+import React, { useContext } from "react";
+//import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
 
@@ -19,15 +19,18 @@ function Main({
   isEraseCardPopupOpen,
   selectedCard,
   onSelectedCard,
+  cards,
+  onCardLike,
+  onCardDelete,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  
+  /*
 
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api
-      .getCardInfo()
+      .getCardList()
       .then((cardsData) => {
         setCards(cardsData);
       })
@@ -56,6 +59,7 @@ function Main({
       setCards((state) => state.filter((c) => c._id !== card._id));
     });
   }
+  */
 
   return (
     <div>
@@ -95,8 +99,8 @@ function Main({
             selectedCard={selectedCard}
             onSelectedCard={onSelectedCard}
             onEraseCardClick={onEraseCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
           />
           {selectedCard && (
             <ImagePopup selectedCard={selectedCard} onClose={onClose} />
@@ -149,7 +153,7 @@ function Main({
             <button
               type="button"
               className="form__button"
-              onClick={handleCardDelete}
+              onClick={onCardDelete}
             >
               Sí
             </button>

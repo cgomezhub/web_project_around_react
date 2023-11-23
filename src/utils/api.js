@@ -17,7 +17,7 @@ class Api {
         console.log(err);
       });
   }
-  getCardInfo() {
+  getCardList() {
     return fetch(`${this.address}/cards`, {
       headers: this.headers,
     })
