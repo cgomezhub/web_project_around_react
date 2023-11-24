@@ -13,9 +13,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   function handleDesriptionChange(e) {
     setDescription(e.target.value);
   }
-
   // suscribir el contexto 
-
   const currentUser = useContext(CurrentUserContext);
   //console.log(currentUser);
   // Después de cargar el usuario actual desde la API

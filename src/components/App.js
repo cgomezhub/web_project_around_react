@@ -6,6 +6,7 @@ import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContexts";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -14,7 +15,13 @@ function App() {
   const [isEraseCardPopupOpen, setIsEraseCardPopupOpen] = useState(false);
   const [selectedCard, setSeletedCard] = useState(null);
 
-  const [currentUser, setCurrentUser] = useState({ name: "", about: "", avatar:"" });
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    about: "",
+    avatar: "",
+  });
+
+ const [cards, setCards] = useState([]);
 
   useEffect(() => {
     api
@@ -25,7 +32,28 @@ function App() {
       .catch((error) => {
         console.log(error);
       });
+    api
+      .getCardList()
+      .then((cardsData) => {
+        setCards(cardsData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
+
+  const handleAddPlaceSubmit = (cardData) => {
+    api
+      .addNewCard(cardData)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        console.log(newCard);
+        closeAllPopups();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleUpdateAvatar = (userData) => {
     api
@@ -79,45 +107,28 @@ function App() {
     setSeletedCard(null);
   };
 
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getCardList()
-      .then((cardsData) => {
-        setCards(cardsData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   function handleCardLike(card) {
-    
     // Verifica una vez más si a esta tarjeta ya le han dado like
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     // Envía una petición a la API y obtén los datos actualizados de la tarjeta
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-     
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
     });
   }
 
   function handleCardDelete(card) {
-    
     // Envía una petición a la API y excluye la tarjeta seleccionada
     api.deleteCard(card._id).then(() => {
-      
       setCards((state) => state.filter((c) => c._id !== card._id));
     });
   }
 
-
-
+  
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div>
+      
+        <div>
         <Header />
         <Main
           onEditProfileClick={handleEditProfileClick}
@@ -125,7 +136,7 @@ function App() {
           onEditAvatarClick={handleEditAvatarClick}
           onEraseCardClick={handleEraseCardClick}
           onClose={closeAllPopups}
-          isAddPlacePopupOpen={isAddPlacePopupOpen}
+          //isAddPlacePopupOpen={isAddPlacePopupOpen}
           isEraseCardPopupOpen={isEraseCardPopupOpen}
           selectedCard={selectedCard}
           onSelectedCard={handleCardClick}
@@ -143,7 +154,12 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
-  />
+        />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
+        />
       </div>
     </CurrentUserContext.Provider>
   );

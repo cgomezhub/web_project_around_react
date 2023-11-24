@@ -97,6 +97,25 @@ class Api {
         console.log(err);
       });
   }
+
+  // agregar mueva card
+
+  addNewCard(newImage) {
+    return fetch(`${this.address}/cards`, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify(newImage),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject('Error: ' + res.status);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 const api = new Api({

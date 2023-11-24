@@ -14,8 +14,6 @@ function Main({
   onAddPlaceClick,
   onEraseCardClick,
   onClose,
-  //isEditAvatarPopupOpen,
-  isAddPlacePopupOpen,
   isEraseCardPopupOpen,
   selectedCard,
   onSelectedCard,
@@ -24,43 +22,7 @@ function Main({
   onCardDelete,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  /*
-
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getCardList()
-      .then((cardsData) => {
-        setCards(cardsData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  function handleCardLike(card) {
-    
-    // Verifica una vez más si a esta tarjeta ya le han dado like
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    // Envía una petición a la API y obtén los datos actualizados de la tarjeta
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-     
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
-  }
-
-  function handleCardDelete(card) {
-    
-    // Envía una petición a la API y excluye la tarjeta seleccionada
-    api.deleteCard(card._id).then(() => {
-      
-      setCards((state) => state.filter((c) => c._id !== card._id));
-    });
-  }
-  */
-
+  
   return (
     <div>
       <div className="page">
@@ -104,45 +66,7 @@ function Main({
           />
           {selectedCard && (
             <ImagePopup selectedCard={selectedCard} onClose={onClose} />
-          )}    
-          <PopupWithForm
-            title="Nuevo Lugar"
-            name="add-form"
-            isOpen={isAddPlacePopupOpen}
-            onClose={onClose}
-            className={isAddPlacePopupOpen ? "active" : "popup_is-opened"}
-          >
-            <input
-              id="text-input-place"
-              type="text"
-              className="form__input"
-              placeholder="Nombre del lugar"
-              minLength="2"
-              maxLength="30"
-              required
-            />
-            <span className="text-input-place-error form__error"></span>
-            <input
-              type="url"
-              id="url-input-image"
-              className="form__input"
-              placeholder="Introduce URL (https://... o http://...)"
-              required
-            />
-            <span className="url-input-image-error form__error"></span>
-            <div className="form__button-container">
-              <button
-                id="button-add-save"
-                type="submit"
-                className="form__button"
-              >
-                Crear
-              </button>
-              <button id="button-add-saving" className="form__button-saving">
-                Guardando...
-              </button>
-            </div>
-          </PopupWithForm>
+          )}              
           <PopupWithForm
             title="¿Estás seguro/a?"
             name="sure-form"
