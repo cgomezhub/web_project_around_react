@@ -2,11 +2,10 @@ import "../index.css";
 import PopupWithForm from "./PopupWithForm";
 import pencil from "../images/Vectoredit-pencil2.svg";
 import React, { useContext } from "react";
-//import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
 
-import { CurrentUserContext } from "../contexts/CurrentUserContexts";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main({
   onEditAvatarClick,
