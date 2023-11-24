@@ -47,7 +47,6 @@ function App() {
       .addNewCard(cardData)
       .then((newCard) => {
         setCards([newCard, ...cards]);
-        console.log(newCard);
         closeAllPopups();
       })
       .catch((error) => {
@@ -60,7 +59,6 @@ function App() {
       .setUserAvatar(userData)
       .then((updateAvatarData) => {
         setCurrentUser(updateAvatarData);
-        console.log(updateAvatarData);
         closeAllPopups();
       })
       .catch((error) => {
