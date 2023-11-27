@@ -15,13 +15,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlaceSubmit }) {
   
   function handleSubmit(e) {
     e.preventDefault();
-    // Expresión regular para validar la URL
-   /* const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
-    if (!urlPattern.test(image)) {
-      // La URL no es válida, manejar el error aquí
-      console.log("La URL no es válida");
-      return;
-    }*/
+    
     // La URL es válida, enviar los datos al controlador externo
     onAddPlaceSubmit({
       name,
